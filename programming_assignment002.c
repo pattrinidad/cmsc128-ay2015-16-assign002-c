@@ -5,7 +5,7 @@
 
 /*Sources: Stackoverflow*/
 
-
+//Function Calls
 int length_of_s1 = 0, length_of_s2 = 0;
 //2 character arrays to accept two strings
 int getHammingDistance(char *a, char *b);
@@ -133,86 +133,85 @@ return 0;
 int getHammingDistance(char a[], char b[]){
 	int res1 = 0, i;
 
-	for(i = 0; i < strlen(a); i++){
-			if(a[i] != b[i]){
-					res1 += 1;
+	//assumming that both the strlen(a) and strlen(b) is equal
+	for(i = 0; i < strlen(a); i++){	//while i is not equal to strlen(a)
+			if(a[i] != b[i]){	//if a[i] != b[i]
+					res1 += 1;	//increment res1
 			}
 	}
 	
-	return res1;
+	return res1;	//return res1
 }
 
 int countSubstrPattern(char original[], char pattern[]){
 	int i=0,j=0, counter=0;
-	char *foo = original;
+	char *foo = original;	//foo copies the original string
 
-	while(original[i] != '\0' && (foo = strstr(foo,pattern))){
-			counter += 1;
-			foo += 2;		
+	while(original[i] != '\0' && (foo = strstr(foo,pattern))){ //while not end of the string
+			counter += 1;				//and foo still has a substring for the pattern
+			foo += 2;				//increment foo by 2
 	}
 	
-	return counter;
+	return counter; //return counter
 }
 
 int isValidString(char str[], char alphabet[]){
 	int i = 0, j = 0, counter = 0;
 
-	for(i = 0; str[i] != '\0'; i++){
-		for(j = 0; alphabet[j] != '\0'; j++){
-				if(str[i] == alphabet[j]){
-						counter += 1; break;
+	for(i = 0; str[i] != '\0'; i++){	//while not end of str
+		for(j = 0; alphabet[j] != '\0'; j++){	//while not end of the alphabet
+				if(str[i] == alphabet[j]){	//compare str[i] to all of the letters on the alphabet
+						counter += 1; break;	//increment count
 				}
 			}
 	}
 
-	if(counter == strlen(str)){
-			return 1;
+	if(counter == strlen(str)){	//if counter == strlen(str), which means that all of the str[i] is present
+			return 1;	//on the alphabet, return true
 		}
 	else{
-			return 0;
+			return 0;	//else return 0
 	}
 }
 
 int getSkew(char str[], int n){
 			int numOfG = 0, numOfC = 0,i;		
-
-			for(i = 0; i <= n; i++){
-					if(str[i] == 'G'){
-							numOfG += 1;
+	
+	//before n is passed as n-1, see the function call above
+			for(i = 0; i <= n; i++){	//while 0 to position n-1
+					if(str[i] == 'G'){	//if G == str[i]
+							numOfG += 1;	//increment the number of Gs
 					}
-					if(str[i] == 'C'){
-							numOfC += 1;
+					if(str[i] == 'C'){	//if C == str[i]
+							numOfC += 1;	//increment the number of Cs
 					}
 			}
 
-		return numOfG - numOfC;
+		return numOfG - numOfC;	//return the difference of the two to get the skew
 }
 
 int getMaxSkewN(char str[], int n){
 		int numOfG = 0, numOfC = 0, i, j, maxSkew = 0,temp = 0;
 		int index[n], count = 0;
-		maxSkew =  getSkew(str, 0);	
+		maxSkew =  getSkew(str, 0);	//get the skew for position 1 (n-1 is passed as parameter)
 	
-		for(i = 1; i <= n ; i++){
-					temp = getSkew(str,i);	
-					if(temp >= maxSkew) maxSkew = temp;	
-		}
+		for(i = 1; i <= n ; i++){	//for the rest of the string after position 1
+					temp = getSkew(str,i);	//get the skew, call it
+					if(temp >= maxSkew) maxSkew = temp;	//if the skew of a given position
+		}							//is greater than the current maxSkew, replace maxSkew with the value of temp
 
-	return maxSkew;	
+	return maxSkew;	//return maxSkew
 }
 
 int getMinSkewN(char str[], int n){
 		int numOfG = 0, numOfC = 0, i, j, minSkew = 0, temp = 0;
 		int index[n], count = 0;
-		minSkew = getSkew(str,0);
+		minSkew = getSkew(str,0);	//get the skew for position 1
 
-		for(i = 1; i <= n; i++){
-				temp = getSkew(str,i);
-				if(temp <= minSkew) minSkew = temp;
-		}
+		for(i = 1; i <= n; i++){	//for the rest of the string after position 1(index 0 to str)
+				temp = getSkew(str,i);	//get the skew, call it using the getSkew function
+				if(temp <= minSkew) minSkew = temp;	//if the skew of a given position
+		}//is less than the current minSkew, replace minSkew with the value of temp
 
-	return minSkew;
+	return minSkew; //return minSkew
 }
-# cmsc128-ay2015-16-assign002-c
-# cmsc128-ay2015-16-assign002-c
-# cmsc128-ay2015-16-assign002-c
