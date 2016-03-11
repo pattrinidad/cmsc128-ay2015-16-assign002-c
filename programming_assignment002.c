@@ -32,7 +32,7 @@ while(1){
 
 	if(choice == 1){
 			//execute Hamming Distance function
-			printf("Enter the strings: ");
+			printf("Enter the strings(PRESS ENTER after the 1st string): ");
 			getchar();
 			fgets(a,256,stdin);
 			fgets(b,256,stdin);
